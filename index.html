@@ -7,123 +7,251 @@
   <meta name="keywords" content="invoice generator, quote, receipt, micro business, gst invoice, proforma" />
   <meta name="author" content="GoSetle®️" />
   <title>GoSetle®️ | Free Online Generators</title>
-  <link href="https://fonts.googleapis.com/css2?family=Segoe+UI:wght@400;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
   <style>
+    :root {
+      --color-primary: #005bea;
+      --color-primary-light: #00c6fb;
+      --color-bg-dark: #000;
+      --color-bg-light: #f9f9f9;
+      --color-bg-header: #e3e7d4;
+      --color-text-dark: #000;
+      --color-text-light: #fff;
+      --color-text-muted: #ccc;
+      --color-card-shadow: rgba(0,0,0,0.07);
+      --color-card-shadow-hover: rgba(0,0,0,0.18);
+      --border-radius: 16px;
+      --transition-standard: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
     * {
       box-sizing: border-box;
+      margin: 0;
+      padding: 0;
     }
 
     body {
-      margin: 0;
-      font-family: 'Segoe UI', sans-serif;
-      background-color: #000;
-      color: #fff;
+      font-family: 'Inter', 'Segoe UI', sans-serif;
+      background: linear-gradient(180deg, #000 0%, #1a1a1a 100%);
+      color: var(--color-text-light);
+      line-height: 1.6;
     }
 
     header {
-      background-color: #e3e7d4;
-      color: #000;
-      padding: 2rem 1rem;
+      background: linear-gradient(135deg, #e3e7d4 0%, #d4dfc7 100%);
+      color: var(--color-text-dark);
+      padding: 3rem 1.5rem;
       text-align: center;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.1);
     }
 
     header img {
-      height: 60px;
-      margin-bottom: 1rem;
+      height: 70px;
+      margin-bottom: 1.5rem;
+      filter: drop-shadow(0 2px 8px rgba(0,0,0,0.1));
     }
 
     header h1 {
-      font-size: 1.5rem;
+      font-size: 2.2rem;
       font-weight: 700;
+      margin-bottom: 0.5rem;
+      letter-spacing: -0.5px;
+    }
+
+    header p {
+      font-size: 1.1rem;
+      opacity: 0.8;
+      max-width: 600px;
+      margin: 0 auto;
     }
 
     .intro {
-      padding: 1rem;
+      padding: 3rem 1.5rem 2rem;
       text-align: center;
-      font-size: 1.1rem;
-      max-width: 800px;
+      font-size: 1.15rem;
+      max-width: 900px;
       margin: auto;
-      color: #ccc;
+      color: var(--color-text-muted);
     }
 
-    .tools-container {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 1rem;
-      padding: 2rem 1rem;
+    .category-section {
+      padding: 2rem 1.5rem 3rem;
+      max-width: 1400px;
+      margin: auto;
+    }
+
+    .category-header {
+      text-align: center;
+      margin-bottom: 2.5rem;
+    }
+
+    .category-header h2 {
+      font-size: 2rem;
+      font-weight: 700;
+      margin-bottom: 0.75rem;
+      background: linear-gradient(90deg, #00c6fb 0%, #005bea 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      display: inline-block;
+    }
+
+    .category-header p {
+      color: #999;
+      font-size: 1rem;
+    }
+
+    .tools-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 1.5rem;
+      margin-bottom: 2rem;
     }
 
     .tool-card {
-      background: #f9f9f9;
-      color: #000;
-      padding: 1.2rem 2rem;
-      border-radius: 12px;
-      min-width: 220px;
+      background: linear-gradient(145deg, #ffffff 0%, #f5f5f5 100%);
+      color: var(--color-text-dark);
+      padding: 1.75rem 1.5rem;
+      border-radius: var(--border-radius);
       text-align: center;
-      transition: transform 0.3s cubic-bezier(.4,2,.6,1), box-shadow 0.3s cubic-bezier(.4,2,.6,1), background 0.4s;
-      font-weight: bold;
-      font-size: 1.05rem;
-      border: none;
-      outline: none;
+      transition: all var(--transition-standard);
+      font-weight: 600;
+      font-size: 1rem;
       cursor: pointer;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.07);
-      margin: 0.5rem;
-      display: flex;
-      align-items: center;
-      justify-content: center;
+      box-shadow: 0 4px 12px var(--color-card-shadow);
+      position: relative;
+      overflow: hidden;
+      border: 1px solid rgba(0,0,0,0.05);
+    }
+
+    .tool-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: linear-gradient(135deg, #00c6fb 0%, #005bea 100%);
+      opacity: 0;
+      transition: opacity var(--transition-standard);
+      z-index: 0;
+    }
+
+    .tool-card:hover::before {
+      opacity: 1;
     }
 
     .tool-card:hover {
-      transform: translateY(-6px) scale(1.03);
-      box-shadow: 0 8px 24px rgba(0,0,0,0.18);
-      background: linear-gradient(90deg, #00c6fb 0%, #005bea 100%);
-      color: #fff;
+      transform: translateY(-8px) scale(1.02);
+      box-shadow: 0 12px 32px var(--color-card-shadow-hover);
     }
 
     .tool-card a {
       text-decoration: none;
       color: inherit;
       display: block;
-      width: 100%;
-      height: 100%;
-      padding: 0.2em 0;
-      border-radius: 8px;
-      transition: color 0.3s;
+      position: relative;
+      z-index: 1;
+      transition: color var(--transition-standard);
     }
 
     .tool-card:hover a {
-      color: #fff;
+      color: var(--color-text-light);
+    }
+
+    .icon {
+      font-size: 2rem;
+      margin-bottom: 0.75rem;
+      display: block;
+    }
+
+    .divider {
+      height: 2px;
+      background: linear-gradient(90deg, transparent 0%, #00c6fb 50%, transparent 100%);
+      margin: 4rem auto;
+      max-width: 600px;
+      opacity: 0.3;
     }
 
     footer {
       text-align: center;
-      background-color: #dfe4ea;
+      background: linear-gradient(135deg, #dfe4ea 0%, #c8d0d8 100%);
       color: #444;
-      padding: 2rem 1rem;
-      font-size: 0.9rem;
+      padding: 3rem 1.5rem;
+      font-size: 0.95rem;
+      margin-top: 4rem;
+      box-shadow: 0 -4px 20px rgba(0,0,0,0.1);
+    }
+
+    footer p {
+      margin-bottom: 0.5rem;
+    }
+
+    footer a {
+      color: var(--color-primary);
+      text-decoration: none;
+      font-weight: 600;
+      transition: color var(--transition-standard);
+    }
+
+    footer a:hover {
+      color: var(--color-primary-light);
     }
 
     @media (max-width: 900px) {
-      .tools-container {
-        flex-direction: column;
-        align-items: center;
-        gap: 0.5rem;
+      header h1 {
+        font-size: 1.8rem;
       }
+
+      .category-header h2 {
+        font-size: 1.6rem;
+      }
+
+      .tools-grid {
+        grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+        gap: 1.25rem;
+      }
+
       .tool-card {
-        width: 90%;
-        min-width: unset;
-        font-size: 1rem;
-        padding: 1rem 1.2rem;
+        padding: 1.5rem 1.25rem;
+        font-size: 0.95rem;
       }
     }
 
     @media (max-width: 600px) {
+      header {
+        padding: 2rem 1rem;
+      }
+
+      header h1 {
+        font-size: 1.5rem;
+      }
+
+      header p {
+        font-size: 0.95rem;
+      }
+
+      .intro {
+        padding: 2rem 1rem 1.5rem;
+        font-size: 1rem;
+      }
+
+      .tools-grid {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+      }
+
       .tool-card {
-        width: 100%;
-        min-width: unset;
-        font-size: 0.98rem;
-        padding: 0.9rem 0.7rem;
+        padding: 1.25rem 1rem;
+        font-size: 0.9rem;
+      }
+
+      .category-header h2 {
+        font-size: 1.4rem;
+      }
+
+      .category-section {
+        padding: 1.5rem 1rem 2rem;
       }
     }
   </style>
@@ -133,34 +261,231 @@
   <header>
     <img src="https://gosetle.com/logo.png" alt="GoSetle®️ Logo" />
     <h1>Free Online Generators for Micro Businesses</h1>
+    <p>Professional documents in seconds</p>
   </header>
 
   <div class="intro">
     <p>GoSetle® offers free and easy-to-use online software tools for small and micro businesses. Generate invoices, receipts, quotes, and other essential documents instantly. Try it free today!</p>
   </div>
 
-  <section class="tools-container">
-    <div class="tool-card"><a href="https://gosetle.com/invoice/free-invoice-generator">Free Invoice Generator</a></div>
-    <div class="tool-card"><a href="https://gosetle.com/invoice/proforma-invoice-generator">Proforma Invoice Generator</a></div>
-    <div class="tool-card"><a href="https://gosetle.com/invoice/construction-invoice-generator">Construction Invoice Generator</a></div>
-    <div class="tool-card"><a href="https://gosetle.com/invoice/medical-invoice-generator">Medical Invoice Generator</a></div>
-    <div class="tool-card"><a href="https://gosetle.com/invoice/gst-invoice-generator">GST Invoice Generator</a></div>
-    <div class="tool-card"><a href="https://gosetle.com/invoice/sales-invoice-generator">Sales Invoice Generator</a></div>
-    <div class="tool-card"><a href="https://gosetle.com/invoice/receipt-generator">Receipt Generator</a></div>
-    <div class="tool-card"><a href="https://gosetle.com/invoice/sales-receipt-generator">Sales Receipt Generator</a></div>
-    <div class="tool-card"><a href="https://gosetle.com/invoice/cash-receipt-generator">Cash Receipt Generator</a></div>
-    <div class="tool-card"><a href="https://gosetle.com/invoice/quote-generator">Quote Generator</a></div>
-    <div class="tool-card"><a href="https://gosetle.com/invoice/estimate-generator">Estimate Generator</a></div>
-    <div class="tool-card"><a href="https://gosetle.com/invoice/credit-memo-generator">Credit Memo Generator</a></div>
-    <div class="tool-card"><a href="https://gosetle.com/invoice/credit-note-generator">Credit Note Generator</a></div>
-    <div class="tool-card"><a href="https://gosetle.com/invoice/purchase-order-generator">Purchase Order Generator</a></div>
-    <div class="tool-card"><a href="https://gosetle.com/invoice/delivery-note-generator">Delivery Note Generator</a></div>
-    <div class="tool-card"><a href="https://gosetle.com/invoice/tax-invoice-generator">Tax Invoice Generator</a></div>
-    <div class="tool-card"><a href="https://gosetle.com/invoice/jewellery-invoice-generator">Jewellery Invoice Generator</a></div>
+  <!-- Invoice Section -->
+  <section class="category-section">
+    <div class="category-header">
+      <h2>📄 Invoice Generators</h2>
+      <p>Create professional invoices for your business needs</p>
+    </div>
+    <div class="tools-grid">
+      <div class="tool-card">
+        <a href="https://gosetle.com/invoice/free-invoice-generator">
+          <span class="icon">📝</span>
+          Free Invoice Generator
+        </a>
+      </div>
+      <div class="tool-card">
+        <a href="https://gosetle.com/invoice/gst-invoice-generator">
+          <span class="icon">💼</span>
+          GST Invoice Generator
+        </a>
+      </div>
+      <div class="tool-card">
+        <a href="https://gosetle.com/invoice/proforma-invoice-generator">
+          <span class="icon">📋</span>
+          Proforma Invoice Generator
+        </a>
+      </div>
+      <div class="tool-card">
+        <a href="https://gosetle.com/invoice/sales-invoice-generator">
+          <span class="icon">💰</span>
+          Sales Invoice Generator
+        </a>
+      </div>
+      <div class="tool-card">
+        <a href="https://gosetle.com/invoice/tax-invoice-generator">
+          <span class="icon">🧾</span>
+          Tax Invoice Generator
+        </a>
+      </div>
+      <div class="tool-card">
+        <a href="https://gosetle.com/invoice/service-invoice-template">
+          <span class="icon">🔧</span>
+          Service Invoice Template
+        </a>
+      </div>
+      <div class="tool-card">
+        <a href="https://gosetle.com/invoice/construction-invoice-generator">
+          <span class="icon">🏗️</span>
+          Construction Invoice Generator
+        </a>
+      </div>
+      <div class="tool-card">
+        <a href="https://gosetle.com/invoice/medical-invoice-generator">
+          <span class="icon">⚕️</span>
+          Medical Invoice Generator
+        </a>
+      </div>
+      <div class="tool-card">
+        <a href="https://gosetle.com/invoice/consulting-invoice-template">
+          <span class="icon">👔</span>
+          Consulting Invoice Template
+        </a>
+      </div>
+      <div class="tool-card">
+        <a href="https://gosetle.com/invoice/freelance-writer-invoice-template">
+          <span class="icon">✍️</span>
+          Freelance Writer Invoice
+        </a>
+      </div>
+      <div class="tool-card">
+        <a href="https://gosetle.com/invoice/jewellery-invoice-generator">
+          <span class="icon">💎</span>
+          Jewellery Invoice Generator
+        </a>
+      </div>
+      <div class="tool-card">
+        <a href="https://gosetle.com/invoice/delivery-challan">
+          <span class="icon">🚚</span>
+          Delivery Challan
+        </a>
+      </div>
+      <div class="tool-card">
+        <a href="https://gosetle.com/invoice/excel-invoice-template">
+          <span class="icon">📊</span>
+          Excel Invoice Template
+        </a>
+      </div>
+      <div class="tool-card">
+        <a href="https://gosetle.com/invoice/word-invoice-template">
+          <span class="icon">📄</span>
+          Word Invoice Template
+        </a>
+      </div>
+      <div class="tool-card">
+        <a href="https://gosetle.com/invoice/credit-note-generator">
+          <span class="icon">💳</span>
+          Credit Note Generator
+        </a>
+      </div>
+      <div class="tool-card">
+        <a href="https://gosetle.com/invoice/debit-note-generator">
+          <span class="icon">💸</span>
+          Debit Note Generator
+        </a>
+      </div>
+      <div class="tool-card">
+        <a href="https://gosetle.com/invoice/purchase-order-generator">
+          <span class="icon">🛒</span>
+          Purchase Order Generator
+        </a>
+      </div>
+      <div class="tool-card">
+        <a href="https://gosetle.com/invoice/delivery-note-generator">
+          <span class="icon">📦</span>
+          Delivery Note Generator
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- Receipt Section -->
+  <section class="category-section">
+    <div class="category-header">
+      <h2>🧾 Receipt Generators</h2>
+      <p>Generate receipts for various business types</p>
+    </div>
+    <div class="tools-grid">
+      <div class="tool-card">
+        <a href="https://gosetle.com/receipt/sales-receipt-generator">
+          <span class="icon">💵</span>
+          Sales Receipt Generator
+        </a>
+      </div>
+      <div class="tool-card">
+        <a href="https://gosetle.com/receipt/fast-foods-receipt-generator">
+          <span class="icon">🍔</span>
+          Fast Food Receipt Generator
+        </a>
+      </div>
+      <div class="tool-card">
+        <a href="https://gosetle.com/receipt/restaurant-receipt-generator">
+          <span class="icon">🍽️</span>
+          Restaurant Receipt Generator
+        </a>
+      </div>
+      <div class="tool-card">
+        <a href="https://gosetle.com/receipt/cash-receipt-generator">
+          <span class="icon">💰</span>
+          Cash Receipt Generator
+        </a>
+      </div>
+      <div class="tool-card">
+        <a href="https://gosetle.com/receipt/pharmacy-receipt-generator">
+          <span class="icon">💊</span>
+          Pharmacy Receipt Generator
+        </a>
+      </div>
+      <div class="tool-card">
+        <a href="https://gosetle.com/receipt/medical-receipt-generator">
+          <span class="icon">🏥</span>
+          Medical Receipt Generator
+        </a>
+      </div>
+      <div class="tool-card">
+        <a href="https://gosetle.com/receipt/store-receipt-generator">
+          <span class="icon">🏪</span>
+          Store Receipt Generator
+        </a>
+      </div>
+      <div class="tool-card">
+        <a href="https://gosetle.com/receipt/parking-receipt-generator">
+          <span class="icon">🅿️</span>
+          Parking Receipt Generator
+        </a>
+      </div>
+      <div class="tool-card">
+        <a href="https://gosetle.com/receipt/taxi-receipt-generator">
+          <span class="icon">🚕</span>
+          Taxi Receipt Generator
+        </a>
+      </div>
+      <div class="tool-card">
+        <a href="https://gosetle.com/receipt/hotel-receipt-generator">
+          <span class="icon">🏨</span>
+          Hotel Receipt Generator
+        </a>
+      </div>
+      <div class="tool-card">
+        <a href="https://gosetle.com/receipt/gas-station-receipt-generator">
+          <span class="icon">⛽</span>
+          Gas Station Receipt
+        </a>
+      </div>
+      <div class="tool-card">
+        <a href="https://gosetle.com/receipt/toll-receipt-generator">
+          <span class="icon">🛣️</span>
+          Toll Receipt Generator
+        </a>
+      </div>
+      <div class="tool-card">
+        <a href="https://gosetle.com/receipt/rental-auto-receipt-generator">
+          <span class="icon">🚗</span>
+          Rental Auto Receipt
+        </a>
+      </div>
+      <div class="tool-card">
+        <a href="https://gosetle.com/receipt/rent-receipt-generator">
+          <span class="icon">🏠</span>
+          Rent Receipt Generator
+        </a>
+      </div>
+    </div>
   </section>
 
   <footer>
-    <p>2025 GoSetle®️. All rights reserved. | Empowering Micro Businesses with Free Online Software</p>
+    <p><strong>© 2025 GoSetle®️.</strong> All rights reserved.</p>
+    <p>Empowering Micro Businesses with Free Online Software</p>
+    <p><a href="https://gosetle.com">Visit GoSetle.com</a></p>
   </footer>
 
 </body>
