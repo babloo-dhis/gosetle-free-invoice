@@ -41,7 +41,7 @@ GoSetle.com is a 100% free online platform offering powerful, secure, and easy-t
 - Store Receipt
 - Rental Auto Receipt
 
-See all tools: [gosetle.com/generators](https://gosetle.com/generators)
+See all tools: [gosetle.com/generators](https://gosetle.com/products)
 
 ---
 
